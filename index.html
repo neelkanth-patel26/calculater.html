@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-theme Calculator</title>
+    <style>
+        /* cyrillic-ext */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmSU5fCRc4EsA.woff2) 
+             format('woff2');
+            unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+        }
+
+        /* cyrillic */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmSU5fABc4EsA.woff2) 
+            format('woff2');
+            unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+        }
+
+        /* greek-ext */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmSU5fCBc4EsA.woff2) 
+            format('woff2');
+            unicode-range: U+1F00-1FFF;
+        }
+
+        /* greek */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmSU5fBxc4EsA.woff2) 
+            format('woff2');
+            unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+        }
+
+        /* vietnamese */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmSU5fCxc4EsA.woff2) 
+            format('woff2');
+            unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
+                U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+        }
+
+        /* latin-ext */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmSU5fChc4EsA.woff2) 
+            format('woff2');
+            unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+                U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+
+        /* latin */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmSU5fBBc4.woff2)
+            format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+                U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        /* cyrillic-ext */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOmCnqEu92Fr1Mu72xKOzY.woff2) 
+            format('woff2');
+            unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+        }
+
+        /* cyrillic */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOmCnqEu92Fr1Mu5mxKOzY.woff2) 
+            format('woff2');
+            unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+        }
+
+        /* greek-ext */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOmCnqEu92Fr1Mu7mxKOzY.woff2) 
+            format('woff2');
+            unicode-range: U+1F00-1FFF;
+        }
+
+        /* greek */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOmCnqEu92Fr1Mu4WxKOzY.woff2) 
+            format('woff2');
+            unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+        }
+
+        /* vietnamese */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOmCnqEu92Fr1Mu7WxKOzY.woff2) 
+            format('woff2');
+            unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
+                U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+        }
+
+        /* latin-ext */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOmCnqEu92Fr1Mu7GxKOzY.woff2) 
+            format('woff2');
+            unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+                U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+
+        /* latin */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOmCnqEu92Fr1Mu4mxK.woff2) 
+            format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+                U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        /* cyrillic-ext */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmWUlfCRc4EsA.woff2) 
+            format('woff2');
+            unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+        }
+
+        /* cyrillic */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmWUlfABc4EsA.woff2) 
+            format('woff2');
+            unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+        }
+
+        /* greek-ext */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmWUlfCBc4EsA.woff2) 
+            format('woff2');
+            unicode-range: U+1F00-1FFF;
+        }
+
+        /* greek */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmWUlfBxc4EsA.woff2) 
+            format('woff2');
+            unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+        }
+
+        /* vietnamese */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmWUlfCxc4EsA.woff2) 
+            format('woff2');
+            unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, 
+            U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+        }
+
+        /* latin-ext */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmWUlfChc4EsA.woff2) 
+            format('woff2');
+            unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, 
+            U+20A0-20AB,U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+
+        /* latin */
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/roboto/v31/KFOlCnqEu92Fr1MmWUlfBBc4.woff2)
+            format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+                U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .calculator {
+            width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        #display {
+            width: 100%;
+            height: 80px;
+            font-size: 30px;
+            text-align: right;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            filter: brightness(110%);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        button.equals {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        #history-container {
+            width: 200px;
+            border-radius: 5px;
+            padding: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+
+        #history div {
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+
+        #history div:hover {
+            transform: translateX(5px);
+        }
+
+        #clearHistory {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #theme-select {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Themes */
+        .dark1 {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .dark1 .calculator,
+        .dark1 #history-container {
+            background-color: #1e1e1e;
+        }
+
+        .dark1 #display {
+            background-color: #2c2c2c;
+            color: #ffffff;
+        }
+
+        .dark1 button {
+            background-color: #333333;
+            color: #ffffff;
+        }
+
+        .dark1 button.operator {
+            background-color: #4caf50;
+        }
+
+        .dark1 button.equals {
+            background-color: #2196f3;
+        }
+
+        .dark1 button.clear {
+            background-color: #f44336;
+        }
+
+        .dark1 #clearHistory {
+            background-color: #4caf50;
+            color: #ffffff;
+        }
+
+        .dark2 {
+            background-color: #1a1a2e;
+            color: #ffffff;
+        }
+
+        .dark2 .calculator,
+        .dark2 #history-container {
+            background-color: #16213e;
+        }
+
+        .dark2 #display {
+            background-color: #0f3460;
+            color: #e94560;
+        }
+
+        .dark2 button {
+            background-color: #0f3460;
+            color: #ffffff;
+        }
+
+        .dark2 button.operator {
+            background-color: #e94560;
+        }
+
+        .dark2 button.equals {
+            background-color: #44bd32;
+        }
+
+        .dark2 button.clear {
+            background-color: #ff3f34;
+        }
+
+        .dark2 #clearHistory {
+            background-color: #e94560;
+            color: #ffffff;
+        }
+
+        .dark3 {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+
+        .dark3 .calculator,
+        .dark3 #history-container {
+            background-color: #34495e;
+        }
+
+        .dark3 #display {
+            background-color: #7f8c8d;
+            color: #ecf0f1;
+        }
+
+        .dark3 button {
+            background-color: #95a5a6;
+            color: #2c3e50;
+        }
+
+        .dark3 button.operator {
+            background-color: #e67e22;
+        }
+
+        .dark3 button.equals {
+            background-color: #27ae60;
+        }
+
+        .dark3 button.clear {
+            background-color: #c0392b;
+        }
+
+        .dark3 #clearHistory {
+            background-color: #e67e22;
+            color: #ecf0f1;
+        }
+
+        .light1 {
+            background-color: #f0f0f0;
+            color: #333333;
+        }
+
+        .light1 .calculator,
+        .light1 #history-container {
+            background-color: #ffffff;
+        }
+
+        .light1 #display {
+            background-color: #e0e0e0;
+            color: #333333;
+        }
+
+        .light1 button {
+            background-color: #e0e0e0;
+            color: #333333;
+        }
+
+        .light1 button.operator {
+            background-color: #4caf50;
+            color: #ffffff;
+        }
+
+        .light1 button.equals {
+            background-color: #2196f3;
+            color: #ffffff;
+        }
+
+        .light1 button.clear {
+            background-color: #f44336;
+            color: #ffffff;
+        }
+
+        .light1 #clearHistory {
+            background-color: #4caf50;
+            color: #ffffff;
+        }
+
+        .light2 {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .light2 .calculator,
+        .light2 #history-container {
+            background-color: #bdc3c7;
+        }
+
+        .light2 #display {
+            background-color: #ffffff;
+            color: #2c3e50;
+        }
+
+        .light2 button {
+            background-color: #95a5a6;
+            color: #2c3e50;
+        }
+
+        .light2 button.operator {
+            background-color: #e67e22;
+            color: #ffffff;
+        }
+
+        .light2 button.equals {
+            background-color: #27ae60;
+            color: #ffffff;
+        }
+
+        .light2 button.clear {
+            background-color: #c0392b;
+            color: #ffffff;
+        }
+
+        .light2 #clearHistory {
+            background-color: #e67e22;
+            color: #ffffff;
+        }
+
+        .light3 {
+            background-color: #f5e8d3;
+            color: #5d4037;
+        }
+
+        .light3 .calculator,
+        .light3 #history-container {
+            background-color: #faf0e6;
+        }
+
+        .light3 #display {
+            background-color: #ffffff;
+            color: #5d4037;
+        }
+
+        .light3 button {
+            background-color: #d7ccc8;
+            color: #5d4037;
+        }
+
+        .light3 button.operator {
+            background-color: #8d6e63;
+            color: #ffffff;
+        }
+
+        .light3 button.equals {
+            background-color: #795548;
+            color: #ffffff;
+        }
+
+        .light3 button.clear {
+            background-color: #a1887f;
+            color: #ffffff;
+        }
+
+        .light3 #clearHistory {
+            background-color: #8d6e63;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body class="dark1">
+    <select id="theme-select">
+        <option value="dark1">Dark Theme 1</option>
+        <option value="dark2">Dark Theme 2</option>
+        <option value="dark3">Dark Theme 3</option>
+        <option value="light1">Light Theme 1</option>
+        <option value="light2">Light Theme 2</option>
+        <option value="light3">Light Theme 3</option>
+    </select>
+    <div class="container">
+        <div id="history-container">
+            <h3>History</h3>
+            <div id="history"></div>
+            <button id="clearHistory" onclick="clearHistory()">Clear History</button>
+        </div>
+        <div class="calculator">
+            <input type="text" id="display" readonly>
+            <div class="buttons">
+                <button class="clear" onclick="clearDisplay()">C</button>
+                <button class="operator" onclick="appendToDisplay('/')">/</button>
+                <button class="operator" onclick="appendToDisplay('*')">×</button>
+                <button class="operator" onclick="appendToDisplay('-')">-</button>
+                <button onclick="appendToDisplay('7')">7</button>
+                <button onclick="appendToDisplay('8')">8</button>
+                <button onclick="appendToDisplay('9')">9</button>
+                <button class="operator" onclick="appendToDisplay('+')">+</button>
+                <button onclick="appendToDisplay('4')">4</button>
+                <button onclick="appendToDisplay('5')">5</button>
+                <button onclick="appendToDisplay('6')">6</button>
+                <button onclick="appendToDisplay('.')">.</button>
+                <button onclick="appendToDisplay('1')">1</button>
+                <button onclick="appendToDisplay('2')">2</button>
+                <button onclick="appendToDisplay('3')">3</button>
+                <button class="equals" onclick="calculate()">=</button>
+                <button onclick="appendToDisplay('0')" style="grid-column: span 3;">0</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+        let history = document.getElementById('history');
+        let calculations = JSON.parse(localStorage.getItem('calcHistory')) || [];
+        let themeSelect = document.getElementById('theme-select');
+        let body = document.body;
+
+        function appendToDisplay(value) {
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        function calculate() {
+            try {
+                let result = eval(display.value);
+                let calculation = `${display.value} = ${result}`;
+                calculations.unshift(calculation);
+                if (calculations.length > 10) calculations.pop();
+                display.value = result;
+                updateHistory();
+                saveHistory();
+            } catch (error) {
+                display.value = 'Error';
+            }
+        }
+
+        function updateHistory() {
+            history.innerHTML = '';
+            calculations.forEach(calc => {
+                let div = document.createElement('div');
+                div.textContent = calc;
+                history.appendChild(div);
+            });
+        }
+
+        function saveHistory() {
+            localStorage.setItem('calcHistory', JSON.stringify(calculations));
+        }
+
+        function clearHistory() {
+            calculations = [];
+            updateHistory();
+            saveHistory();
+        }
+
+        themeSelect.addEventListener('change', (e) => {
+            body.className = e.target.value;
+        });
+
+        // Load history on page load
+        updateHistory();
+    </script>
+</body>
+
+</html>
